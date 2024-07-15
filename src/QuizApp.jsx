@@ -196,7 +196,6 @@ const QuizApp = () => {
       "correct": "A"
     }
   ];
-
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isAnswered, setIsAnswered] = useState(false);
 
