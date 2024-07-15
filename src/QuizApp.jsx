@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-
+import './quizz.css'
 const QuizApp = () => {
   let questions = [
     {
@@ -197,7 +197,7 @@ const QuizApp = () => {
     }
   ];
 
-  const [selectedOptions, setSelectedOptions] = useState({});
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [isAnswered, setIsAnswered] = useState(false);
 
   const handleOptionClick = (questionIndex, option) => {
@@ -207,18 +207,24 @@ const QuizApp = () => {
         [questionIndex]: option
       });
     }
+    
   };
 
   const handleSubmit = () => {
-    setIsAnswered(true);
+    if(Object.keys(selectedOptions).length===questions.length){
+
+      setIsAnswered(true);
+    }else{
+      alert(' Please Select All The Options')
+    }
   };
 
   const handleQuestions = () => (
     <div>
       {questions.map((question, index) => (
-        <div key={index}>
+        <div key={index}  style={{boxShadow:"rgba(0, 0, 0, 0.16) 0px 1px 4px",width:"90%",margin:"auto",padding:"10px",borderRadius:"10px",marginTop:"10px"}}>
           <h3>{question.question}</h3>
-          <div>
+          <div >
             {Object.entries(question.options).map(([key, value]) => (
               <button
                 key={key}
@@ -235,7 +241,7 @@ const QuizApp = () => {
                       ? 'lightblue'
                       : '',
                   pointerEvents: isAnswered ? 'none' : 'auto',
-                  width:"300px",
+                  width:"33%",
                   margin: '5px',
                   padding: '10px',
                   border: '1px solid #ccc',
